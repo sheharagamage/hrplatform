@@ -1,22 +1,25 @@
 package com.hrmanager.hrPlatform.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
-@Table(name = "salary_structure")
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "SalaryStructure")
 public class SalaryStructure {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long structureId;
+    private Integer structureId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "component_id")
     private SalaryComponent component;
 
