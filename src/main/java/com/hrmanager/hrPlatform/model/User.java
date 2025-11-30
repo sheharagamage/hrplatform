@@ -1,12 +1,11 @@
 package com.hrmanager.hrPlatform.model;
 
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.management.relation.Role;
+import com.hrmanager.hrPlatform.model.Role;
 import java.util.Set;
 
 @SuppressWarnings("JpaAttributeTypeInspection")
@@ -25,7 +24,7 @@ public class User {
     private String password;
     private Boolean isAdmin;
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="employeeId")
     private Employee employee;
 

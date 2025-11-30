@@ -7,9 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DepartmentDto {
-    private Integer departmentId;
+public class DesignationDto {
+    private Integer designationId;
     private String name;
-    private Integer companyId; // relation as id
-
+    private Integer departmentId;
 }
