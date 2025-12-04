@@ -13,6 +13,17 @@ public interface DepartmentMapper {
     @Mapping(source = "company.companyId", target = "companyId")
     DepartmentDto toDto(Department entity);
 
-    @Mapping(target = "company", expression = "java(dto.getCompanyId() != null ? new Company(dto.getCompanyId(), null, null, null, null) : null)")
+    @Mapping(target = "company", expression = "java(mapCompany(dto.getCompanyId()))")
+    @Mapping(target = "designations", ignore = true)
+    @Mapping(target = "employees", ignore = true)
     Department toEntity(DepartmentDto dto);
+
+    default Company mapCompany(Integer companyId) {
+        if (companyId == null) {
+            return null;
+        }
+        Company company = new Company();
+        company.setCompanyId(companyId);
+        return company;
+    }
 }

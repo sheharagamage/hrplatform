@@ -11,8 +11,16 @@ public interface DesignationMapper {
     @Mapping(source = "department.departmentId", target = "departmentId")
     DesignationDto toDto(Designation entity);
 
-    @Mapping(target = "department", expression = "java(dto.getDepartmentId() != null ? new Department(dto.getDepartmentId(), null) : null)")
+    @Mapping(target = "department", expression = "java(mapDepartment(dto.getDepartmentId()))")
     Designation toEntity(DesignationDto dto);
 
+    default Department mapDepartment(Integer departmentId) {
+        if (departmentId == null) {
+            return null;
+        }
+        Department department = new Department();
+        department.setDepartmentId(departmentId);
+        return department;
+    }
 
 }
